@@ -13,7 +13,7 @@ const getAIResponse = async (message: string): Promise<string> => {
         const response = await axios.post(
             `${openRouterBaseURL}`,
             {
-                model: "deepseek/deepseek-r1-0528:free",
+                model: "deepseek/deepseek-r1-0528-qwen3-8b:free",
                 messages: [
                     {
                         role: 'system',
