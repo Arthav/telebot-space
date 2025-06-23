@@ -5,15 +5,21 @@ import axios from 'axios';
 const debug = createDebug('bot:ai_text');
 
 const openRouterAPIKey = process.env.OPEN_ROUTER_KEY; 
-const openRouterBaseURL = 'https://openrouter.ai/api/v1';
+const openRouterBaseURL = 'https://openrouter.ai/api/v1/chat/completions';
 
 // Function to make API call to OpenRouter
 const getAIResponse = async (message: string): Promise<string> => {
   try {
     const response = await axios.post(
-      `${openRouterBaseURL}/chat`,
+      `${openRouterBaseURL}`,
       {
-        message: message,
+        model: "deepseek/deepseek-r1-0528:free",
+        messages: [
+          {
+            role: 'user',
+            content: message,
+          },
+        ],
       },
       {
         headers: {
@@ -23,7 +29,7 @@ const getAIResponse = async (message: string): Promise<string> => {
       }
     );
 
-    return response.data.response;
+    return response.data.choices[0].message.content;
   } catch (error) {
     debug('Error calling OpenRouter API:', error);
     return 'Sorry, I could not generate a response at the moment.';
@@ -34,12 +40,17 @@ const getAIResponse = async (message: string): Promise<string> => {
 const ai = () => async (ctx: Context) => {
   debug('Triggered "AI" text command');
 
-  const userMessage = ctx.text;
-  
-  if (userMessage) {
-    const aiReply = await getAIResponse(userMessage);
+  const fullMessage = (ctx.message as any).text;
 
-    await ctx.reply(aiReply);
+  if (fullMessage) {
+    const userMessage = fullMessage.replace(/^\/ai\s*/, '').trim();
+
+    if (userMessage) {
+      const aiReply = await getAIResponse(userMessage);
+      await ctx.reply(aiReply);
+    } else {
+      await ctx.reply('Please provide a message.');
+    }
   }
 };
 
