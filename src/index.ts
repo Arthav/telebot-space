@@ -1,7 +1,7 @@
 import { Telegraf } from 'telegraf';
 
 import { about, joke, quote, command, fact } from './commands';
-import { greeting } from './text';
+import { greeting, ai } from './text';
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { development, production } from './core';
 
@@ -16,7 +16,8 @@ bot.command('quote', quote());
 bot.command('fact', fact());
 bot.command('command', command());
 bot.command('help', command());
-bot.on('message', greeting());
+// bot.on('message', greeting());
+bot.on('message', ai());
 
 //prod mode (Vercel)
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
