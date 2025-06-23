@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const debug = createDebug('bot:ai_text');
 
-const openRouterAPIKey = process.env.OPEN_ROUTER_KEY;  // Replace with your OpenRouter API key
+const openRouterAPIKey = process.env.OPEN_ROUTER_KEY; 
 const openRouterBaseURL = 'https://openrouter.ai/api/v1';
 
 // Function to make API call to OpenRouter
