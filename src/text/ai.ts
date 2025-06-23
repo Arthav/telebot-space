@@ -16,6 +16,10 @@ const getAIResponse = async (message: string): Promise<string> => {
         model: "deepseek/deepseek-r1-0528:free",
         messages: [
           {
+            role: 'system',
+            content: 'You are a helpful assistant. Always answer in English, or in the language the user are chatting with',
+          },
+          {
             role: 'user',
             content: message,
           },
@@ -39,6 +43,8 @@ const getAIResponse = async (message: string): Promise<string> => {
 // Function to handle the AI response
 const ai = () => async (ctx: Context) => {
   debug('Triggered "AI" text command');
+
+  await ctx.reply('AI is Thinking...');
 
   const fullMessage = (ctx.message as any).text;
 
