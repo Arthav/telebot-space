@@ -7,6 +7,7 @@
   "homepage": "https://github.com/Arthav/telegram-bot-vercel",
   "dependencies": {
     "@vercel/node": "^5.1.16",
+    "axios": "^1.10.0",
     "dotenv-cli": "^8.0.0",
     "telegraf": "^4.16.3"
   },
