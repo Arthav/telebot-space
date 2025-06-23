@@ -8,6 +8,7 @@ const command = () => async (ctx: Context) => {
   const messageList = [
     `/about - About Bot`,
     `/joke - Show random joke`,
+    `/fact - Show random fact`,
   ].join('\n');
   const message = `Hello, ${userName}!\n\n${messageList}`;
 
