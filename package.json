@@ -1,9 +1,9 @@
 {
-  "name": "telegram-bot-vercel",
+  "name": "help-bot",
   "version": "1.1.0",
   "description": "Telegram Bot Vercel Boilerplate",
   "main": "src/index.ts",
-  "author": "Arthav",
+  "author": "Christian Bonafena",
   "homepage": "https://github.com/Arthav/telegram-bot-vercel",
   "dependencies": {
     "@vercel/node": "^5.1.16",

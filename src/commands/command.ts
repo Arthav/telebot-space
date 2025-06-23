@@ -9,6 +9,7 @@ const command = () => async (ctx: Context) => {
     `/about - About Bot`,
     `/joke - Show random joke`,
     `/fact - Show random fact`,
+    `chat a message - An AI will response to your message`,
   ].join('\n');
   const message = `Hello, ${userName}!\n\n${messageList}`;
 
