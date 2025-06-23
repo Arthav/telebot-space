@@ -44,9 +44,9 @@ const getAIResponse = async (message: string): Promise<string> => {
 const ai = () => async (ctx: Context) => {
     debug('Triggered "AI" text command');
 
-    await ctx.reply('AI is Thinking...');
+    const thinkingMessage = await ctx.reply('AI is Thinking...');
     const chatId = ctx.chat?.id;
-    const messageId = ctx.message?.message_id;
+    const messageId = thinkingMessage.message_id;
 
     try {
         const fullMessage = (ctx.message as any).text;
