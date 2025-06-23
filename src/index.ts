@@ -1,6 +1,6 @@
 import { Telegraf } from 'telegraf';
 
-import { about, joke, quote, command, fact, news } from './commands';
+import { about, joke, quote, command, fact } from './commands';
 import { greeting } from './text';
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { development, production } from './core';
@@ -14,7 +14,6 @@ bot.command('about', about());
 bot.command('joke', joke());
 bot.command('quote', quote());
 bot.command('fact', fact());
-bot.command('news', news());
 bot.command('command', command());
 bot.command('help', command());
 bot.on('message', greeting());
