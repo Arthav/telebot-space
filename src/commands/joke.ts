@@ -1,5 +1,3 @@
-// src/commands/joke.ts  (assuming this is your file path)
-
 import { Context } from 'telegraf';
 import createDebug from 'debug';
 import axios from 'axios';
