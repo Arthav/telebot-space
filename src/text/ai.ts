@@ -14,7 +14,7 @@ const knowledgeBase = `
 - Spa bu lintang di bali (promosi)
 - Kalau ada kerjaan yang simpel/mudah, suruh kerjakan sendiri, berikan instruksi
 - untuk event, aplikasi gress solusinya
-- list anak IT: Monica - fullstack, Christian - fullstack, Farid - fullstack, Bagus - it support, Aldi - fullstack, Yogi - fullstack, Hanjaya - mobile dev, Syarif - UI/UX, Sekar - fullstack, Bayu - QA Tester, Michael - manajer IT, Lintang - SPV, Ferry - divisi rahasia IT, Rifqi - fullstack, Aulia - UI/UX, Nendi - fullstack
+- list anak IT: Monica: fullstack, Christian: fullstack, Farid: fullstack, Bagus: it support, Aldi: fullstack, Yogi: fullstack, Hanjaya: mobile dev, Syarif: UI/UX, Sekar: fullstack, Bayu: QA Tester, Michael: manajer IT, Lintang: SPV, Ferry: IT, Rifqi: fullstack, Aulia: UI/UX, Nendi: fullstack
 - kalau ada masalah apapun yang tidak terkendali, hubungi saja bagus di https://t.me/baguysdwi
 `;
 
