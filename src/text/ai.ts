@@ -62,15 +62,13 @@ const ai = () => async (ctx: Context) => {
         const fullMessage = (ctx.message as any).text;
 
         const user = ctx.from;
-        const username = user?.username; 
         const firstName = user?.first_name;
-        const displayName = username ? `@${username}` : firstName;
 
         if (fullMessage) {
             const userMessage = fullMessage.replace(/^\/ai\s*/, '').trim();
 
             if (userMessage) {
-                const aiReply = await getAIResponse(userMessage, displayName);
+                const aiReply = await getAIResponse(userMessage, firstName!);
                 await ctx.reply(aiReply);
             } else {
                 await ctx.reply('Please provide a message after the /ai command.');
