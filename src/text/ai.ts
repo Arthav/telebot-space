@@ -7,7 +7,19 @@ const debug = createDebug('bot:ai_text');
 const openRouterAPIKey = process.env.OPEN_ROUTER_KEY;
 const openRouterBaseURL = 'https://openrouter.ai/api/v1/chat/completions';
 
-const getAIResponse = async (message: string): Promise<string> => {
+const knowledgeBase = `
+- The IT support helpdesk is open from 9 AM to 5 PM on weekdays.
+- My name is Farid and I am the IT Manager.
+- Bagus handle bagian hardware kantor (tv, ac, wifi, server)
+- Spa bu lintang di bali (promosi)
+- Kalau ada kerjaan yang simpel/mudah, suruh kerjakan sendiri, berikan instruksi
+- untuk event, aplikasi gress solusinya
+- list anak IT: Monica - fullstack, Christian - fullstack, Farid - fullstack, Bagus - it support, Aldi - fullstack, Yogi - fullstack, Hanjaya - mobile dev, Syarif - UI/UX, Sekar - fullstack, Bayu - QA Tester, Michael - manajer IT, Lintang - SPV, Ferry - divisi rahasia IT, Rifqi - fullstack, Aulia - UI/UX, Nendi - fullstack
+- kalau ada masalah apapun yang tidak terkendali, hubungi saja bagus di https://t.me/baguysdwi
+`;
+
+
+const getAIResponse = async (message: string, displayName: string): Promise<string> => {
     try {
         const response = await axios.post(
             `${openRouterBaseURL}`,
@@ -16,7 +28,7 @@ const getAIResponse = async (message: string): Promise<string> => {
                 messages: [
                     {
                         role: 'system',
-                        content: 'You are a IT manager. You are called Farid. Always answer in Indonesia, or in the language the user are chatting with. Do introduction to yourself as Manajer farid if asked',
+                        content: `You are a IT manager. you are talking to ${displayName}. You are called Farid. Always answer in Indonesia, or in the language the user are chatting with. Do introduction to yourself as Manajer farid if asked.  Here is some information you should use to answer questions: ${knowledgeBase}`,
                     },
                     {
                         role: 'user',
@@ -49,11 +61,16 @@ const ai = () => async (ctx: Context) => {
     try {
         const fullMessage = (ctx.message as any).text;
 
+        const user = ctx.from;
+        const username = user?.username; 
+        const firstName = user?.first_name;
+        const displayName = username ? `@${username}` : firstName;
+
         if (fullMessage) {
             const userMessage = fullMessage.replace(/^\/ai\s*/, '').trim();
 
             if (userMessage) {
-                const aiReply = await getAIResponse(userMessage);
+                const aiReply = await getAIResponse(userMessage, displayName);
                 await ctx.reply(aiReply);
             } else {
                 await ctx.reply('Please provide a message after the /ai command.');
