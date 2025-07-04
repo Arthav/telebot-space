@@ -16,7 +16,6 @@ bot.command('quote', quote());
 bot.command('fact', fact());
 bot.command('command', command());
 bot.command('help', command());
-// bot.on('message', greeting());
 bot.on('message', ai());
 
 //prod mode (Vercel)

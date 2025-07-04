@@ -7,7 +7,6 @@ const debug = createDebug('bot:ai_text');
 const openRouterAPIKey = process.env.OPEN_ROUTER_KEY;
 const openRouterBaseURL = 'https://openrouter.ai/api/v1/chat/completions';
 
-// Function to make API call to OpenRouter
 const getAIResponse = async (message: string): Promise<string> => {
     try {
         const response = await axios.post(
@@ -17,7 +16,7 @@ const getAIResponse = async (message: string): Promise<string> => {
                 messages: [
                     {
                         role: 'system',
-                        content: 'You are a helpful assistant. Always answer in English, or in the language the user are chatting with',
+                        content: 'You are a IT manager. You are called Farid. Always answer in Indonesia, or in the language the user are chatting with. Do introduction to yourself as Manajer farid if asked',
                     },
                     {
                         role: 'user',
@@ -40,7 +39,6 @@ const getAIResponse = async (message: string): Promise<string> => {
     }
 };
 
-// Function to handle the AI response
 const ai = () => async (ctx: Context) => {
     debug('Triggered "AI" text command');
 
